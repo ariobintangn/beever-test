@@ -1,7 +1,23 @@
+import axios from "axios";
 import React from "react";
+import { useState } from "react";
 
-export default function KanyeQuoteView() {
+// import {addToFavourites} from '../reducers'
 
+// const store = createStore(favourites)
+
+export default function KanyeQuoteView(props) {
+  const {addToFavs} = props;
+  const [quote, setQuote] = useState('')
+  const getQuote=()=>{
+    axios.get('https://api.kanye.rest')
+    .then(res =>{
+      console.log(res.data.quote)
+      setQuote(res.data.quote)
+    }).catch(err => {
+      console.log(err)
+    })
+  }
   return (
     <section style={{ textAlign: "center" }}>
       <img
@@ -10,9 +26,10 @@ export default function KanyeQuoteView() {
         style={{ width: "300px" }}
       />
       <h1 style={{ fontSize: "40px", marginTop: "10px" }}>Kanye-West Quote</h1>
-
-      <button >Get Quote</button>
-      <button >Add Favorite</button>
+      {quote && <h3>{quote}</h3>}
+      <button onClick={getQuote}>Get Quote</button>
+      <button 
+      onClick={() => addToFavs({favourites: this.quote})}>Add Favorite</button>
     </section>
   );
 }

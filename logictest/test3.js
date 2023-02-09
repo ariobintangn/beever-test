@@ -71,11 +71,19 @@ function history(a) {
     makanan.push(result2[j][1].split(','))
   }
 
-  function reducer(hari,makanan){
-    return{...hari, makanan}
-  }
+  // function reducer(hari,makanan){
+  //   return{...hari, makanan}
+  // }
 
-  let jadwal = reduce(reducer,{})
+  // let jadwal = reduce(reducer,{})
+
+  let jadwal = {
+    Senin: makanan[0],
+    Selasa: makanan[1],
+    Rabu: makanan[2],
+    Kamis: makanan[3],
+    Jumat: makanan[4],
+  }
 
   return jadwal
 }
